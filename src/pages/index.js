@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -16,6 +16,7 @@ const IndexPage = ({ data }) => (
         <h4>
           {post.node.frontmatter.date} - {post.node.timeToRead} min de lectura
         </h4>
+        <Link to={post.node.fields.slug}>Leer más...</Link>
       </div>
     ))}
   </Layout>
@@ -28,6 +29,9 @@ export const query = graphql`
       edges {
         node {
           excerpt
+          fields {
+            slug
+          }
           frontmatter {
             date
             title
